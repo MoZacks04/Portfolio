@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zack Moss — Hardware / FPGA / VLSI Portfolio</title>
+  <meta name="description" content="Zack Moss — Computer Engineering portfolio featuring FPGA, RTL, VLSI, and embedded projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Clean UI fonts + mono for terminal -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Subtle background accents -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+  <header class="header">
+    <a class="brand" href="#top" aria-label="Go to top">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">Zack Moss</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span class="nav__toggleLines" aria-hidden="true"></span>
+      </button>
+
+      <div class="nav__menu" id="navMenu">
+        <a href="#about" class="nav__link">About</a>
+        <a href="#skills" class="nav__link">Skills</a>
+        <a href="#projects" class="nav__link">Projects</a>
+        <a href="#experience" class="nav__link">Experience</a>
+        <a href="#contact" class="nav__link nav__link--cta">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="section hero">
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <p class="eyebrow">
+            <span class="dot"></span>
+            Computer Engineering • RTL / FPGA / VLSI
+          </p>
+
+          <h1 class="h1">
+            Building fast, correct digital systems —
+            <span class="accent">from HDL to layout</span>.
+          </h1>
+
+          <p class="lead">
+            I’m <strong>Zack Moss</strong>, a 4th-year Computer Engineering student at Toronto Metropolitan University
+            (formerly Ryerson). I design and verify synchronous digital systems, RTL accelerators, and custom VLSI blocks.
+          </p>
+
+          <div class="hero__badges">
+            <span class="chip">SystemVerilog (strongest)</span>
+            <span class="chip">VHDL</span>
+            <span class="chip">Cadence Virtuoso</span>
+            <span class="chip">Verilator / GTKWave</span>
+            <span class="chip">Quartus / Xilinx ISE</span>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects">View Projects</a>
+            <a class="btn btn--ghost" href="#contact">Get In Touch</a>
+          </div>
+
+          <div class="hero__meta">
+            <div class="metaCard">
+              <div class="metaCard__label">Education</div>
+              <div class="metaCard__value">B.Eng Computer Engineering (2022–2026)</div>
+            </div>
+            <div class="metaCard">
+              <div class="metaCard__label">Standing</div>
+              <div class="metaCard__value">GPA 3.8 / 4.0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal visual -->
+        <div class="hero__terminal reveal" data-reveal-delay="120">
+          <div class="terminal" role="region" aria-label="Interactive terminal preview">
+            <div class="terminal__bar">
+              <div class="terminal__dots" aria-hidden="true">
+                <span class="tDot tDot--red"></span>
+                <span class="tDot tDot--amber"></span>
+                <span class="tDot tDot--green"></span>
+              </div>
+              <div class="terminal__title">zack@portfolio:~</div>
+            </div>
+
+            <div class="terminal__body" id="terminalBody" aria-live="polite">
+              <!-- JS writes terminal lines here -->
+            </div>
+
+            <div class="terminal__hint">
+              <span class="kbd">Tip</span> This terminal is a visual demo — it cycles through projects & skills.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="h2">About</h2>
+          <p class="subhead">
+            I like systems that are <strong>measurable</strong>, <strong>verifiable</strong>, and <strong>shippable</strong>.
+            My work spans FPGA prototyping, RTL verification, and transistor-level design.
+          </p>
+        </div>
+
+        <div class="aboutGrid">
+          <div class="card reveal">
+            <h3 class="h3">What I focus on</h3>
+            <ul class="list">
+              <li>RTL modules + testbenches with waveform-driven debugging</li>
+              <li>Dataflows, controllers, and memory interfaces</li>
+              <li>Custom VLSI: schematic, pre-layout sim, DRC/LVS sign-off</li>
+              <li>Prototyping on FPGA for timing and behavior validation</li>
+            </ul>
+          </div>
+
+          <div class="card reveal" data-reveal-delay="120">
+            <h3 class="h3">Tooling I’m comfortable with</h3>
+            <ul class="list">
+              <li><strong>HDLs:</strong> SystemVerilog, VHDL</li>
+              <li><strong>FPGA/EDA:</strong> Xilinx ISE (Spartan-3E), Intel Quartus Prime</li>
+              <li><strong>Sim/Debug:</strong> Verilator, GTKWave</li>
+              <li><strong>VLSI:</strong> Cadence Virtuoso (130nm), DRC/LVS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section section--alt" id="skills">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="h2">Skills</h2>
+          <p class="subhead">A quick snapshot of what I use to design, verify, and debug.</p>
+        </div>
+
+        <div class="skillsGrid">
+          <div class="card reveal">
+            <h3 class="h3">RTL / Digital Design</h3>
+            <div class="pillRow">
+              <span class="pill">SystemVerilog</span>
+              <span class="pill">VHDL</span>
+              <span class="pill">Synchronous design</span>
+              <span class="pill">Controllers / FSMs</span>
+              <span class="pill">Dataflows</span>
+              <span class="pill">Memory interfaces</span>
+            </div>
+          </div>
+
+          <div class="card reveal" data-reveal-delay="90">
+            <h3 class="h3">Verification / Debug</h3>
+            <div class="pillRow">
+              <span class="pill">Verilator</span>
+              <span class="pill">GTKWave</span>
+              <span class="pill">Waveform debugging</span>
+              <span class="pill">Timing validation</span>
+              <span class="pill">Simulation programming</span>
+            </div>
+          </div>
+
+          <div class="card reveal" data-reveal-delay="180">
+            <h3 class="h3">FPGA / EDA</h3>
+            <div class="pillRow">
+              <span class="pill">Intel Quartus Prime</span>
+              <span class="pill">Xilinx ISE</span>
+              <span class="pill">Spartan-3E</span>
+              <span class="pill">On-platform debug</span>
+            </div>
+          </div>
+
+          <div class="card reveal" data-reveal-delay="270">
+            <h3 class="h3">VLSI / Custom IC</h3>
+            <div class="pillRow">
+              <span class="pill">Cadence Virtuoso</span>
+              <span class="pill">130nm</span>
+              <span class="pill">Schematic + Layout</span>
+              <span class="pill">DRC / LVS</span>
+              <span class="pill">Pre-layout sim</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="h2">Projects</h2>
+          <p class="subhead">
+            Highlights from RTL accelerators, CPU microarchitecture, custom VLSI, mixed-signal blocks, and FPGA builds.
+          </p>
+        </div>
+
+        <div class="projectsGrid">
+          <article class="projectCard reveal">
+            <div class="projectCard__top">
+              <h3 class="h3">Matrix Multiplication Accelerator Block</h3>
+              <div class="tagRow">
+                <span class="tag">SystemVerilog</span>
+                <span class="tag">Verilator</span>
+                <span class="tag">GTKWave</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Designed an accelerator module and validated full functionality using Verilator.</li>
+              <li>Iterated via waveform debugging (GTKWave) until behavior was consistent and correct.</li>
+            </ul>
+          </article>
+
+          <article class="projectCard reveal" data-reveal-delay="90">
+            <div class="projectCard__top">
+              <h3 class="h3">CPU Microarchitecture (Simulated)</h3>
+              <div class="tagRow">
+                <span class="tag">VHDL</span>
+                <span class="tag">Quartus Prime</span>
+                <span class="tag">Timing</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Implemented and simulated a CPU design with focus on instruction/data flow sequencing.</li>
+              <li>Verified correct operation through timing waveforms and control signal inspection.</li>
+            </ul>
+          </article>
+
+          <article class="projectCard reveal" data-reveal-delay="180">
+            <div class="projectCard__top">
+              <h3 class="h3">CMOS ALU (Custom VLSI)</h3>
+              <div class="tagRow">
+                <span class="tag">Cadence Virtuoso</span>
+                <span class="tag">CMOS</span>
+                <span class="tag">DRC/LVS</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Built a transistor-level ALU implementing core arithmetic/logic functions.</li>
+              <li>Validated schematic behavior with pre-layout simulation; completed layout + DRC/LVS checks.</li>
+            </ul>
+          </article>
+
+          <article class="projectCard reveal" data-reveal-delay="270">
+            <div class="projectCard__top">
+              <h3 class="h3">Clock & Data Recovery (Phase-Tracking PLL CDR)</h3>
+              <div class="tagRow">
+                <span class="tag">Mixed-Signal VLSI</span>
+                <span class="tag">Virtuoso</span>
+                <span class="tag">Serial Link</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Designed a phase-tracking CDR for a serial link with embedded timing (transition-based recovery).</li>
+              <li>Reused a CTLE + slicer front-end and implemented PLL phase alignment + lock behavior.</li>
+            </ul>
+          </article>
+
+          <article class="projectCard reveal">
+            <div class="projectCard__top">
+              <h3 class="h3">Autonomous Drone Fly Gates (Capstone — In Progress)</h3>
+              <div class="tagRow">
+                <span class="tag">Arduino</span>
+                <span class="tag">C++</span>
+                <span class="tag">Computer Vision</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Developing an autonomous drone to navigate through gates with camera-based detection.</li>
+              <li>Integrating vision processing with a microcontroller for real-time motor control + navigation.</li>
+            </ul>
+          </article>
+
+          <article class="projectCard reveal" data-reveal-delay="90">
+            <div class="projectCard__top">
+              <h3 class="h3">Cache + Cache Controller on FPGA Board</h3>
+              <div class="tagRow">
+                <span class="tag">VHDL</span>
+                <span class="tag">Xilinx ISE</span>
+                <span class="tag">Spartan-3E</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Built a cache + cache controller subsystem using the Xilinx CAD flow on Spartan-3E.</li>
+              <li>Verified specs with simulation, on-platform debugging, and waveform inspection.</li>
+            </ul>
+          </article>
+
+          <article class="projectCard reveal" data-reveal-delay="180">
+            <div class="projectCard__top">
+              <h3 class="h3">Digital Pong (FPGA Video Game)</h3>
+              <div class="tagRow">
+                <span class="tag">VHDL</span>
+                <span class="tag">Video Timing</span>
+                <span class="tag">Spartan-3E</span>
+              </div>
+            </div>
+            <ul class="list list--compact">
+              <li>Developed FPGA pong with synchronous logic, real-time video timing (v/h-sync), and state control.</li>
+              <li>Created a pixel clock by converting 50MHz to 25MHz for 60Hz display timing.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section section--alt" id="experience">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="h2">Experience</h2>
+          <p class="subhead">Hands-on work that shaped my process and work ethic.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timelineItem reveal">
+            <div class="timelineItem__dot" aria-hidden="true"></div>
+            <div class="timelineItem__content card">
+              <div class="timelineItem__top">
+                <h3 class="h3">Tree Planter</h3>
+                <span class="muted">Summer 2024 &amp; 2025</span>
+              </div>
+              <p class="muted">
+                High-output seasonal work that sharpened discipline, endurance, and teamwork — skills I bring into
+                engineering projects (especially long debug sessions).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="sectionHead reveal">
+          <h2 class="h2">Contact</h2>
+          <p class="subhead">
+            Want to talk about FPGA, RTL verification, or mixed-signal blocks? Send me a message.
+          </p>
+        </div>
+
+        <div class="contactGrid">
+          <div class="card reveal">
+            <h3 class="h3">Quick links</h3>
+            <div class="contactLinks">
+              <!-- Replace # with your real links -->
+              <a class="contactLink" href="#" target="_blank" rel="noreferrer">
+                <span class="contactLink__k">GitHub</span>
+                <span class="contactLink__v">github.com/your-handle</span>
+              </a>
+              <a class="contactLink" href="#" target="_blank" rel="noreferrer">
+                <span class="contactLink__k">LinkedIn</span>
+                <span class="contactLink__v">linkedin.com/in/your-handle</span>
+              </a>
+              <a class="contactLink" href="mailto:you@example.com">
+                <span class="contactLink__k">Email</span>
+                <span class="contactLink__v">you@example.com</span>
+              </a>
+            </div>
+
+            <div class="hr"></div>
+            <p class="muted small">
+              Tip: you can host this on GitHub Pages / Netlify as-is.
+            </p>
+          </div>
+
+          <form class="card reveal" data-reveal-delay="120" id="contactForm">
+            <h3 class="h3">Send a message</h3>
+
+            <label class="field">
+              <span class="field__label">Name</span>
+              <input class="field__input" name="name" autocomplete="name" placeholder="Your name" required />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Email</span>
+              <input class="field__input" type="email" name="email" autocomplete="email" placeholder="you@domain.com" required />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Message</span>
+              <textarea class="field__input field__textarea" name="message" placeholder="What do you want to build?" required></textarea>
+            </label>
+
+            <button class="btn btn--primary" type="submit">Create Email Draft</button>
+            <p class="muted small" id="formNote">
+              This form opens your email client with a pre-filled message (no backend needed).
+            </p>
+          </form>
+        </div>
+
+        <footer class="footer">
+          <div class="muted small">© <span id="year"></span> Zack Moss • Built with HTML/CSS/JS</div>
+          <a class="toTop" href="#top" aria-label="Back to top">↑</a>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
