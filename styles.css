@@ -491,7 +491,7 @@ a:hover{ opacity: 0.95; }
   overflow: hidden;
 
   /* CHANGED: grow the terminal window to the right by 75px */
-  width: calc(100% + 75px);
+  width: calc(100% + 150px);
 }
 .terminal__bar{
   display:flex;
@@ -1036,3 +1036,4 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
+
