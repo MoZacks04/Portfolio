@@ -514,19 +514,25 @@ a:hover{ opacity: 0.95; }
   color: rgba(255,255,255,0.75);
 }
 
-.terminal__body{
+.terminal__body {
   padding: 14px 14px 10px;
   font-family: var(--mono);
   font-size: 0.92rem;
-
-  /* NEW: default terminal body color */
   color: var(--term-out);
 
-  /* keeps the window stable */
-  min-height: 320px;
-  max-height: 420px;
-  overflow: hidden;
+  /* FIXED terminal size */
+  height: 380px;          /* pick one value and lock it */
+  box-sizing: border-box;
+
+  /* Content behavior */
+  overflow-y: auto;       /* scroll text instead of resizing */
+  overflow-x: hidden;
+
+  /* Prevent layout shift during typing */
+  white-space: pre-wrap;
+  word-break: break-word;
 }
+
 .termLine{ display:flex; gap: 10px; margin: 8px 0; }
 .termPrompt{ color: var(--term-prompt); }
 
@@ -1011,3 +1017,4 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
+
