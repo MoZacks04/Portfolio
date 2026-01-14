@@ -84,7 +84,7 @@ function append(html) {
   terminalBody.scrollTop = terminalBody.scrollHeight;
 }
 
-async function typeCommand(prompt, command, speed = 22) {
+async function typeCommand(prompt, command, speed = 5) {
   if (!terminalBody) return;
 
   const id = `cmd_${Math.random().toString(16).slice(2)}`;
@@ -365,3 +365,4 @@ ${email}`
 ========================= */
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
