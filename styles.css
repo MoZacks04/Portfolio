@@ -489,6 +489,9 @@ a:hover{ opacity: 0.95; }
   background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.25));
   box-shadow: var(--shadow);
   overflow: hidden;
+
+  /* CHANGED: grow the terminal window to the right by 75px */
+  width: calc(100% + 75px);
 }
 .terminal__bar{
   display:flex;
@@ -522,7 +525,7 @@ a:hover{ opacity: 0.95; }
 
   /* Fixed terminal size */
   height: 380px;
-  width: calc(100% + 75px);   /* grow 75px to the right */
+  width: 100%;               /* CHANGED: body matches the resized terminal */
   box-sizing: border-box;
 
   /* Scrolling behavior */
@@ -1033,8 +1036,3 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
-
-
-
-
-
