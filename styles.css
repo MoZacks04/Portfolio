@@ -531,6 +531,7 @@ a:hover{ opacity: 0.95; }
   /* Prevent layout shift during typing */
   white-space: pre-wrap;
   word-break: break-word;
+  scrollbar-gutter: stable;
 }
 
 .termLine{ display:flex; gap: 10px; margin: 8px 0; }
@@ -1017,4 +1018,5 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
+
 
