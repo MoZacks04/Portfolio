@@ -520,19 +520,22 @@ a:hover{ opacity: 0.95; }
   font-size: 0.92rem;
   color: var(--term-out);
 
-  /* FIXED terminal size */
-  height: 380px;          /* pick one value and lock it */
+  /* Fixed terminal size */
+  height: 380px;
   box-sizing: border-box;
 
-  /* Content behavior */
-  overflow-y: auto;       /* scroll text instead of resizing */
+  /* Scrolling behavior */
+  overflow-y: auto;
   overflow-x: hidden;
 
   /* Prevent layout shift during typing */
   white-space: pre-wrap;
   word-break: break-word;
+
+  /* Keeps scrollbar space reserved (no layout jump) */
   scrollbar-gutter: stable;
 }
+
 
 .termLine{ display:flex; gap: 10px; margin: 8px 0; }
 .termPrompt{ color: var(--term-prompt); }
@@ -1018,5 +1021,6 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
+
 
 
