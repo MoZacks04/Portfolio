@@ -106,6 +106,207 @@
           </div>
         </div>
       </div>
+
+      <!-- ===================================================== -->
+      <!-- NEW: INTERACTIVE 1-BIT FULL ADDER + TRUTH TABLE        -->
+      <!-- ===================================================== -->
+      <div class="container">
+        <div class="nand reveal" data-reveal-delay="180" aria-label="Interactive 1-bit full adder playground">
+          <div class="nand__head">
+            <div>
+              <p class="eyebrow">
+                <span class="dot"></span>
+                Interactive Logic — click inputs
+              </p>
+              <h2 class="h2 nand__title">
+                1-Bit Full Adder <span class="accent">(Sum + Carry)</span>
+              </h2>
+              <p class="subhead nand__subhead">
+                Toggle A/B/Cin, watch <strong>SUM</strong> and <strong>COUT</strong> update instantly, and see the active truth-table row highlight.
+              </p>
+            </div>
+
+            <div class="nand__pillWrap" aria-live="polite">
+              <div class="nand__pill" id="faSumPill">
+                <span class="nand__pillDot" id="faSumDot" aria-hidden="true"></span>
+                SUM: <strong class="nand__pillVal" id="faSumValue">0</strong>
+              </div>
+              <div class="nand__pill" id="faCoutPill">
+                <span class="nand__pillDot" id="faCoutDot" aria-hidden="true"></span>
+                COUT: <strong class="nand__pillVal" id="faCoutValue">0</strong>
+              </div>
+              <div class="nand__inputs mono">
+                Inputs: <span id="faInputsBinary">000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="nand__grid">
+            <!-- Left: Adder + Controls -->
+            <div class="card nand__card">
+              <div class="nand__cardTop">
+                <h3 class="h3">Full Adder (A, B, Cin)</h3>
+                <div class="nand__eq mono">SUM = A ⊕ B ⊕ Cin</div>
+              </div>
+
+              <div class="nand__controls">
+                <button class="nand__toggle" id="faToggleA" type="button" aria-pressed="false">
+                  <div>
+                    <div class="nand__toggleLabel">Input A</div>
+                    <div class="muted small">Click to toggle</div>
+                  </div>
+                  <div class="nand__switch" aria-hidden="true"><span class="nand__knob"></span></div>
+                </button>
+
+                <button class="nand__toggle" id="faToggleB" type="button" aria-pressed="false">
+                  <div>
+                    <div class="nand__toggleLabel">Input B</div>
+                    <div class="muted small">Click to toggle</div>
+                  </div>
+                  <div class="nand__switch" aria-hidden="true"><span class="nand__knob"></span></div>
+                </button>
+
+                <button class="nand__toggle" id="faToggleCin" type="button" aria-pressed="false">
+                  <div>
+                    <div class="nand__toggleLabel">Carry In (Cin)</div>
+                    <div class="muted small">Click to toggle</div>
+                  </div>
+                  <div class="nand__switch" aria-hidden="true"><span class="nand__knob"></span></div>
+                </button>
+              </div>
+
+              <div class="nand__diagramWrap" aria-hidden="true">
+                <svg viewBox="0 0 700 240" class="nand__svg">
+                  <!-- Input wires -->
+                  <line id="faWireA"   x1="40"  y1="65"  x2="250" y2="65"  class="nand__wire" />
+                  <line id="faWireB"   x1="40"  y1="120" x2="250" y2="120" class="nand__wire" />
+                  <line id="faWireCin" x1="40"  y1="175" x2="250" y2="175" class="nand__wire" />
+
+                  <!-- Full adder block -->
+                  <rect x="250" y="40" width="250" height="160" rx="18" ry="18" class="fa__body" />
+
+                  <!-- Output wires -->
+                  <line id="faWireSum"  x1="500" y1="95"  x2="640" y2="95"  class="nand__wire" />
+                  <line id="faWireCout" x1="500" y1="150" x2="640" y2="150" class="nand__wire" />
+
+                  <!-- Labels -->
+                  <text x="18"  y="71"  class="nand__label">A</text>
+                  <text x="18"  y="126" class="nand__label">B</text>
+                  <text x="18"  y="181" class="nand__label">Cin</text>
+
+                  <text x="655" y="101" class="nand__label">SUM</text>
+                  <text x="655" y="156" class="nand__label">COUT</text>
+
+                  <text x="312" y="108" class="fa__tag">FULL ADDER</text>
+                  <text x="304" y="136" class="fa__subtag">A + B + Cin</text>
+                </svg>
+
+                <div class="nand__readouts">
+                  <div class="nand__readout">
+                    <div class="nand__readoutK mono">A</div>
+                    <div class="nand__readoutV mono" id="faReadA">0</div>
+                  </div>
+                  <div class="nand__readout">
+                    <div class="nand__readoutK mono">B</div>
+                    <div class="nand__readoutV mono" id="faReadB">0</div>
+                  </div>
+                  <div class="nand__readout">
+                    <div class="nand__readoutK mono">Cin</div>
+                    <div class="nand__readoutV mono" id="faReadCin">0</div>
+                  </div>
+                  <div class="nand__readout">
+                    <div class="nand__readoutK mono">SUM</div>
+                    <div class="nand__readoutV mono" id="faReadSum">0</div>
+                  </div>
+                  <div class="nand__readout">
+                    <div class="nand__readoutK mono">COUT</div>
+                    <div class="nand__readoutV mono" id="faReadCout">0</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="nand__sequence mono">
+                <span class="nand__seqMuted">Sequence:</span>
+                <span class="chip" id="faSeqRead">read A,B,Cin</span>
+                <span class="nand__arrow">→</span>
+                <span class="chip" id="faSeqXor1">X1 = A ⊕ B</span>
+                <span class="nand__arrow">→</span>
+                <span class="chip" id="faSeqSum">SUM = X1 ⊕ Cin</span>
+                <span class="nand__arrow">→</span>
+                <span class="chip" id="faSeqCarry">COUT = majority(A,B,Cin)</span>
+              </div>
+            </div>
+
+            <!-- Right: Truth Table -->
+            <div class="card nand__card">
+              <div class="nand__cardTop">
+                <h3 class="h3">Truth Table</h3>
+                <div class="muted small">Active row highlights automatically</div>
+              </div>
+
+              <div class="nand__table" role="table" aria-label="Full adder truth table">
+                <div class="nand__thead mono" role="rowgroup">
+                  <div role="row" class="nand__tr nand__tr--head" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div role="columnheader" class="nand__th">A</div>
+                    <div role="columnheader" class="nand__th">B</div>
+                    <div role="columnheader" class="nand__th">Cin</div>
+                    <div role="columnheader" class="nand__th">SUM</div>
+                    <div role="columnheader" class="nand__th">COUT</div>
+                  </div>
+                </div>
+
+                <div class="nand__tbody" role="rowgroup" id="faTruthBody">
+                  <div class="nand__tr" role="row" data-a="0" data-b="0" data-c="0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="0" data-b="0" data-c="1" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="0" data-b="1" data-c="0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="0" data-b="1" data-c="1" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="1" data-b="0" data-c="0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="1" data-b="0" data-c="1" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">0</div><div class="nand__td mono" role="cell">1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="1" data-b="1" data-c="0" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--red" aria-hidden="true"></span>0</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                  </div>
+                  <div class="nand__tr" role="row" data-a="1" data-b="1" data-c="1" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
+                    <div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">1</div><div class="nand__td mono" role="cell">1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                    <div class="nand__td mono" role="cell"><span class="nand__led nand__led--green" aria-hidden="true"></span>1</div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="muted small nand__note">
+                Full adders are the core building block behind ripple-carry adders, ALUs, and CPU datapaths.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================== END FULL ADDER ===================== -->
     </section>
 
     <!-- ABOUT -->
