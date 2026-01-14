@@ -522,6 +522,7 @@ a:hover{ opacity: 0.95; }
 
   /* Fixed terminal size */
   height: 380px;
+  width: calc(100% + 75px);   /* grow 75px to the right */
   box-sizing: border-box;
 
   /* Scrolling behavior */
@@ -532,7 +533,7 @@ a:hover{ opacity: 0.95; }
   white-space: pre-wrap;
   word-break: break-word;
 
-  /* Keep gutter space stable (no jump if browser reserves it) */
+  /* Keep gutter space stable */
   scrollbar-gutter: stable;
 
   /* Hide scrollbar (Firefox) */
@@ -544,6 +545,7 @@ a:hover{ opacity: 0.95; }
   width: 0;
   height: 0;
 }
+
 
 
 
@@ -1031,6 +1033,7 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
+
 
 
 
