@@ -532,9 +532,19 @@ a:hover{ opacity: 0.95; }
   white-space: pre-wrap;
   word-break: break-word;
 
-  /* Keeps scrollbar space reserved (no layout jump) */
+  /* Keep gutter space stable (no jump if browser reserves it) */
   scrollbar-gutter: stable;
+
+  /* Hide scrollbar (Firefox) */
+  scrollbar-width: none;
 }
+
+/* Hide scrollbar (Chrome, Edge, Safari) */
+.terminal__body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 
 
 .termLine{ display:flex; gap: 10px; margin: 8px 0; }
@@ -1021,6 +1031,7 @@ a:hover{ opacity: 0.95; }
 @media (max-width: 720px){
   .nand__controls{ grid-template-columns: 1fr; }
 }
+
 
 
 
