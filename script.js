@@ -84,7 +84,7 @@ function append(html) {
   terminalBody.scrollTop = terminalBody.scrollHeight;
 }
 
-async function typeCommand(prompt, command, speed = 60) {
+async function typeCommand(prompt, command, speed = 250) {
   if (!terminalBody) return;
 
   const id = `cmd_${Math.random().toString(16).slice(2)}`;
@@ -98,7 +98,7 @@ async function typeCommand(prompt, command, speed = 60) {
     await sleep(speed);
   }
   if (lineEl) lineEl.innerHTML = makeLine(prompt, typed, false);
-  await sleep(220);
+  await sleep(1000);
 }
 
 function clearTerminalSoft() {
@@ -179,12 +179,12 @@ Type-cycled portfolio preview:
     ));
 
     for (const step of scriptSteps) {
-      await sleep(320);
+      await sleep(1000);
       await typeCommand(prompt, step.cmd, 18);
       append(makeOut(step.out));
     }
 
-    await sleep(1200);
+    await sleep(2000);
   }
 }
 
@@ -365,5 +365,6 @@ ${email}`
 ========================= */
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
 
 
