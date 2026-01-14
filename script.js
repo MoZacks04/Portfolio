@@ -16,7 +16,7 @@ if (navToggle && navMenu) {
   });
 
   // Close menu on link click
-  navMenu.querySelectorAll("a").forEach((a) => {
+  navMenu.querySelectorAll("a").forEach(a => {
     a.addEventListener("click", () => closeMenu());
   });
 
@@ -38,37 +38,29 @@ if (navToggle && navMenu) {
    Scroll reveal
 ========================= */
 const revealEls = document.querySelectorAll(".reveal");
-const io = new IntersectionObserver(
-  (entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute("data-reveal-delay");
-        if (delay) entry.target.style.transitionDelay = `${Number(delay)}ms`;
-        entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
-      }
+const io = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) {
+      const delay = entry.target.getAttribute("data-reveal-delay");
+      if (delay) entry.target.style.transitionDelay = `${Number(delay)}ms`;
+      entry.target.classList.add("is-visible");
+      io.unobserve(entry.target);
     }
-  },
-  { threshold: 0.1 }
-);
+  }
+}, { threshold: 0.10 });
 
-revealEls.forEach((el) => io.observe(el));
+revealEls.forEach(el => io.observe(el));
 
 /* =========================
    Terminal Visual (typing)
-   Goal: terminal remains SAME SIZE while looping
 ========================= */
 const terminalBody = document.getElementById("terminalBody");
 
-const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
 function escapeHtml(str) {
   return str.replace(/[&<>"']/g, (m) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;",
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
   }[m]));
 }
 
@@ -105,7 +97,6 @@ async function typeCommand(prompt, command, speed = 22) {
     if (lineEl) lineEl.innerHTML = makeLine(prompt, typed, true);
     await sleep(speed);
   }
-
   if (lineEl) lineEl.innerHTML = makeLine(prompt, typed, false);
   await sleep(220);
 }
@@ -115,93 +106,62 @@ function clearTerminalSoft() {
   terminalBody.innerHTML = "";
 }
 
-/* ===== NEW: lock terminal size so it never resizes ===== */
-let terminalSizeLocked = false;
-
-function lockTerminalSizeOnce() {
-  if (!terminalBody || terminalSizeLocked) return;
-
-  // Ensure there is content first so we get a real height
-  // (If empty, height might be 0 depending on your CSS)
-  if (!terminalBody.children.length) return;
-
-  const bodyRect = terminalBody.getBoundingClientRect();
-  const bodyH = Math.round(bodyRect.height);
-
-  if (bodyH > 0) {
-    terminalBody.style.height = `${bodyH}px`;
-    terminalBody.style.overflowY = "auto";
-    terminalSizeLocked = true;
-  }
-}
-/* ====================================================== */
-
 const scriptSteps = [
   {
     cmd: "whoami",
-    out: `zack_moss
+    out:
+`zack_moss
 
 Computer Engineering (TMU, 2022–2026)
-Focus: RTL / FPGA / VLSI | GPA: 3.8/4.0`,
+Focus: RTL / FPGA / VLSI | GPA: 3.8/4.0`
   },
   {
     cmd: "ls projects",
-    out: `matrix_mul_accel.sv
+    out:
+`matrix_mul_accel.sv
 cpu_microarch.vhd
 cmos_alu_130nm/
 pll_cdr_serial_link/
 autonomous_drone_gates/
 fpga_cache_controller.vhd
-digital_pong_fpga.vhd`,
+digital_pong_fpga.vhd`
   },
   {
     cmd: "cat projects/matrix_mul_accel.sv | head",
-    out: `✔ Designed a matrix multiplication accelerator module
+    out:
+`✔ Designed a matrix multiplication accelerator module
 ✔ Verified functionality using Verilator
-✔ Debugged dataflow in GTKWave until behavior matched spec`,
+✔ Debugged dataflow in GTKWave until behavior matched spec`
   },
   {
     cmd: "cat projects/pll_cdr_serial_link/README.md",
-    out: `Phase-tracking PLL CDR (transition-based recovery)
+    out:
+`Phase-tracking PLL CDR (transition-based recovery)
 - Timing embedded in data stream
 - Reused CTLE + slicer front-end
-- Implemented PLL phase alignment + lock behavior`,
+- Implemented PLL phase alignment + lock behavior`
   },
   {
     cmd: "show skills --compact",
-    out: `RTL/HDL: SystemVerilog (strongest), VHDL
+    out:
+`RTL/HDL: SystemVerilog (strongest), VHDL
 FPGA/EDA: Xilinx ISE (Spartan-3E), Intel Quartus Prime
 Sim/Debug: Verilator, GTKWave
-VLSI: Cadence Virtuoso (130nm), DRC/LVS`,
+VLSI: Cadence Virtuoso (130nm), DRC/LVS`
   },
   {
-    cmd: 'echo "Let\'s build something clean & correct."',
-    out: "Let's build something clean & correct.",
-  },
+    cmd: "echo \"Let's build something clean & correct.\"",
+    out: "Let's build something clean & correct."
+  }
 ];
 
 async function runTerminalLoop() {
   if (!terminalBody) return;
 
   const prompt = "zack@portfolio:~$";
-  const reducedMotion =
-    window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-
-  // First paint: put something in, lock size, then start loop.
-  clearTerminalSoft();
-  append(
-    makeOut(`Welcome.
-Type-cycled portfolio preview:
-• projects • skills • highlights`)
-  );
-
-  // lock size after content exists + layout settles
-  requestAnimationFrame(() => {
-    lockTerminalSizeOnce();
-  });
+  const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
   if (reducedMotion) {
-    clearTerminalSoft();
     append(makeLine(prompt, "whoami"));
     append(makeOut(scriptSteps[0].out));
     append(makeLine(prompt, "show skills --compact"));
@@ -212,14 +172,11 @@ Type-cycled portfolio preview:
   while (true) {
     clearTerminalSoft();
 
-    append(
-      makeOut(`Welcome.
+    append(makeOut(
+`Welcome.
 Type-cycled portfolio preview:
-• projects • skills • highlights`)
-    );
-
-    // In case size wasn't locked on the first frame, keep trying safely
-    if (!terminalSizeLocked) lockTerminalSizeOnce();
+• projects • skills • highlights`
+    ));
 
     for (const step of scriptSteps) {
       await sleep(320);
@@ -244,32 +201,32 @@ runTerminalLoop();
 
   // Output pills + values
   const sumPill = document.getElementById("faSumPill");
-  const sumDot = document.getElementById("faSumDot");
-  const sumVal = document.getElementById("faSumValue");
+  const sumDot  = document.getElementById("faSumDot");
+  const sumVal  = document.getElementById("faSumValue");
 
   const coutPill = document.getElementById("faCoutPill");
-  const coutDot = document.getElementById("faCoutDot");
-  const coutVal = document.getElementById("faCoutValue");
+  const coutDot  = document.getElementById("faCoutDot");
+  const coutVal  = document.getElementById("faCoutValue");
 
   // Inputs label + readouts
   const inputsBinary = document.getElementById("faInputsBinary");
-  const readA = document.getElementById("faReadA");
-  const readB = document.getElementById("faReadB");
+  const readA   = document.getElementById("faReadA");
+  const readB   = document.getElementById("faReadB");
   const readCin = document.getElementById("faReadCin");
   const readSum = document.getElementById("faReadSum");
-  const readCout = document.getElementById("faReadCout");
+  const readCout= document.getElementById("faReadCout");
 
   // SVG wires
-  const wireA = document.getElementById("faWireA");
-  const wireB = document.getElementById("faWireB");
+  const wireA   = document.getElementById("faWireA");
+  const wireB   = document.getElementById("faWireB");
   const wireCin = document.getElementById("faWireCin");
   const wireSum = document.getElementById("faWireSum");
-  const wireCout = document.getElementById("faWireCout");
+  const wireCout= document.getElementById("faWireCout");
 
   // Sequence chips
-  const seqRead = document.getElementById("faSeqRead");
-  const seqXor1 = document.getElementById("faSeqXor1");
-  const seqSum = document.getElementById("faSeqSum");
+  const seqRead  = document.getElementById("faSeqRead");
+  const seqXor1  = document.getElementById("faSeqXor1");
+  const seqSum   = document.getElementById("faSeqSum");
   const seqCarry = document.getElementById("faSeqCarry");
 
   // Truth table rows
@@ -309,12 +266,11 @@ runTerminalLoop();
 
   function highlightTruthRow(a, b, c) {
     if (!rows.length) return;
-    rows.forEach((r) => r.classList.remove("is-active"));
-    const match = rows.find(
-      (r) =>
-        r.getAttribute("data-a") === String(a) &&
-        r.getAttribute("data-b") === String(b) &&
-        r.getAttribute("data-c") === String(c)
+    rows.forEach(r => r.classList.remove("is-active"));
+    const match = rows.find(r =>
+      r.getAttribute("data-a") === String(a) &&
+      r.getAttribute("data-b") === String(b) &&
+      r.getAttribute("data-c") === String(c)
     );
     if (match) match.classList.add("is-active");
   }
@@ -351,7 +307,7 @@ runTerminalLoop();
     if (wireCout) wireCout.style.stroke = cout ? COLORS.green : COLORS.red;
 
     // Sequence chips
-    const x1 = A ^ B;
+    const x1 = (A ^ B);
     if (seqRead) seqRead.textContent = `read A=${A}, B=${B}, Cin=${Cin}`;
     if (seqXor1) seqXor1.textContent = `X1 = A ⊕ B = ${x1}`;
     if (seqSum) seqSum.textContent = `SUM = X1 ⊕ Cin = ${sum}`;
@@ -361,18 +317,9 @@ runTerminalLoop();
     highlightTruthRow(A, B, Cin);
   }
 
-  btnA.addEventListener("click", () => {
-    A = A ? 0 : 1;
-    updateUI();
-  });
-  btnB.addEventListener("click", () => {
-    B = B ? 0 : 1;
-    updateUI();
-  });
-  btnCin.addEventListener("click", () => {
-    Cin = Cin ? 0 : 1;
-    updateUI();
-  });
+  btnA.addEventListener("click", () => { A = A ? 0 : 1; updateUI(); });
+  btnB.addEventListener("click", () => { B = B ? 0 : 1; updateUI(); });
+  btnCin.addEventListener("click", () => { Cin = Cin ? 0 : 1; updateUI(); });
 
   // Initial paint
   updateUI();
@@ -397,7 +344,7 @@ if (contactForm) {
     const to = "you@example.com";
     const subject = encodeURIComponent(`Portfolio message from ${name}`);
     const body = encodeURIComponent(
-      `Hi Zack,
+`Hi Zack,
 
 ${message}
 
