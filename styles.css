@@ -21,6 +21,16 @@
 
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* NEW: terminal accent palette */
+  --term-prompt: rgba(255,255,255,0.50);
+  --term-cmd: var(--red2);                 /* typed command */
+  --term-out: rgba(255,255,255,0.74);      /* normal output text */
+  --term-out-strong: rgba(255,255,255,0.86);
+
+  /* project vs description */
+  --term-project: rgba(255, 77, 77, 0.92); /* red-ish project name */
+  --term-desc: rgba(255,255,255,0.72);     /* description text */
 }
 
 *{ box-sizing: border-box; }
@@ -508,20 +518,44 @@ a:hover{ opacity: 0.95; }
   padding: 14px 14px 10px;
   font-family: var(--mono);
   font-size: 0.92rem;
-  color: rgba(255,255,255,0.88);
+
+  /* NEW: default terminal body color */
+  color: var(--term-out);
+
+  /* keeps the window stable */
   min-height: 320px;
   max-height: 420px;
   overflow: hidden;
 }
 .termLine{ display:flex; gap: 10px; margin: 8px 0; }
-.termPrompt{ color: rgba(255,255,255,0.55); }
-.termCmd{ color: rgba(255,255,255,0.92); }
+.termPrompt{ color: var(--term-prompt); }
+
+/* NEW: typed command color (red scheme) */
+.termCmd{
+  color: var(--term-cmd);
+  text-shadow: 0 0 18px rgba(255,42,42,0.18);
+}
+
+/* NEW: output can contain project + description spans */
 .termOut{
   margin: 2px 0 10px 0;
-  color: rgba(255,255,255,0.75);
+  color: var(--term-out);
   white-space: pre-wrap;
 }
+.termOut strong{ color: var(--term-out-strong); }
+
+/* NEW: use these inside terminal outputs if you want per-line coloring */
+.termProject{
+  color: var(--term-project);
+  text-shadow: 0 0 18px rgba(255,42,42,0.20);
+}
+.termDesc{
+  color: var(--term-desc);
+}
+
+/* keep existing just in case you still use it elsewhere */
 .termAccent{ color: var(--red2); }
+
 .cursor{
   display:inline-block;
   width: 10px;
@@ -670,7 +704,7 @@ a:hover{ opacity: 0.95; }
   min-width: 220px;
 }
 
-/* NEW: output row for SUM + COUT pills */
+/* output row for SUM + COUT pills */
 .nand__outRow{
   display:flex;
   gap: 10px;
@@ -840,7 +874,7 @@ a:hover{ opacity: 0.95; }
   font-family: var(--mono);
 }
 
-/* NEW: Full-adder SVG text classes */
+/* Full-adder SVG text classes */
 .fa__tag{
   fill: rgba(255,255,255,0.70);
   font-size: 12px;
@@ -908,7 +942,7 @@ a:hover{ opacity: 0.95; }
   align-items:center;
 }
 
-/* NEW: 5-column rows for FULL ADDER truth table (A,B,Cin,Sum,Cout) */
+/* 5-column rows for FULL ADDER truth table */
 .nand__tr--fa{
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
